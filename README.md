@@ -1,11 +1,11 @@
-# miracle-map
+# Miracle Map
  Project for Gwen Clark via Upwork
  
-# About
+## About
 
-Description goes here
+Full-page, interactive web map displaying point locations of miracles around the world.
 
-# Links
+## Reference
 
 Firefly inspired symbology:
 
