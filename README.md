@@ -10,6 +10,7 @@ Full-page, interactive web map displaying point locations of miracles around the
 esri-leaflet:
 
 * https://github.com/Esri/esri-leaflet
+* http://esri.github.io/esri-leaflet/examples/
 
 Firefly inspired symbology:
 
