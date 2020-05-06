@@ -7,6 +7,10 @@ Full-page, interactive web map displaying point locations of miracles around the
 
 ## Reference
 
+esri-leaflet:
+
+* https://github.com/Esri/esri-leaflet
+
 Firefly inspired symbology:
 
 * https://www.esri.com/about/newsroom/arcwatch/make-your-points-glow-with-firefly-symbols/
