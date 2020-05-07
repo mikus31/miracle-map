@@ -39,6 +39,8 @@
         L.esri.basemapLayer('Streets').addTo(map);
 
         // a Leaflet marker is used by default to symbolize point features.
+        // need to create a view of the hosted feature layer in AGO to access here
+        // the url is for the hosted layer view
         L.esri.featureLayer({
             url: 'https://services9.arcgis.com/fSxmsxg6MME8SObM/arcgis/rest/services/Miracles_GOLD_MASTER_view/FeatureServer/0'
         }).addTo(map);
