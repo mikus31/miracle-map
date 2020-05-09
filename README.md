@@ -1,5 +1,6 @@
-# Miracle Map
- Project for Gwen Clark via Upwork
+# The Miracle Map
+Interactive mapping project for Gwen Clark via Upwork.
+Michael McNeil | 2020-05-09
  
 ## About
 
@@ -20,6 +21,20 @@ A few notes from the client provided with the mockup:
 * From the mockup on the terrorism map where it is total number fatalities and attacks. I like this running tally idea, but how can we apply that to the healings? Total healings? Then another tally by condition or total healed within a region? These are just some thoughts…
 * From the terrorism map it doesn’t seem like one of the filters is working - the location one. I was thinking for our location filter would it make sense to have the choices be by Region? Or something else…?
 * In the top right corner of the terrorism map it says “about this map” … Do you think this is good?
+
+## Requirements
+
+A list of requirements for the delivery:
+
+* Custom build (the map should not look like an out-of-the-box solution)
+* Web map to function as the website
+* Link on the map to external web page, where users can submit a miracle via a Survey123 form
+* Firefly-inspired style (firefly symbology, dark base map)
+* Drop-down box for categorical data within the dataset
+* Hover / popup functionality (name of the miracle as the focus)
+* A running tally of miracles?
+* A location filter?
+* An "About" page?
 
 ## Reference
 
