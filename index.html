@@ -49,8 +49,8 @@
         function addMiracles(data) {
             // add data and popup to the map
             data.bindPopup(function(layer) {
-                var hyper = L.Util.template('{links}', layer.feature.properties);
-                return L.Util.template('<b>MIRACLE NAME</b><br>Condition: {Condition}<br>Video Testimony: ' + hyper, layer.feature.properties);
+                var video = L.Util.template('{links}', layer.feature.properties);
+                return L.Util.template('<b>MIRACLE NAME</b><br>Condition: {Condition}<br>Video Testimony: ' + video, layer.feature.properties);
             }).addTo(map);
         }
     </script>
