@@ -5,6 +5,10 @@
 
 Full-page, interactive web map displaying point locations of miracles around the world.
 
+## Mockup
+
+![miracle-map-mockup](https://github.com/mikus31/miracle-map/blob/master/images/mockup.jpeg "Miracle Map Mockup")
+
 ## Reference
 
 esri-leaflet:
