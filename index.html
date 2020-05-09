@@ -34,16 +34,25 @@
     <div id="map"></div>
 
     <script>
-        var map = L.map('map').setView([33, 36], 8);
+        var map = L.map('map').setView([33, 36], 9);
 
-        L.esri.basemapLayer('Streets').addTo(map);
+        // add basemap conducive to firefly symbology
+        L.esri.basemapLayer('ImageryFirefly').addTo(map);
 
-        // a Leaflet marker is used by default to symbolize point features.
-        // need to create a view of the hosted feature layer in AGO to access here
-        // the url is for the hosted layer view
-        L.esri.featureLayer({
+        // need to create a public view of the hosted feature layer in AGO to access point data here
+        // the url below is for the public hosted layer view
+        var data = L.esri.featureLayer({
             url: 'https://services9.arcgis.com/fSxmsxg6MME8SObM/arcgis/rest/services/Miracles_GOLD_MASTER_view/FeatureServer/0'
-        }).addTo(map);
+        });
+        addMiracles(data);
+
+        function addMiracles(data) {
+            // add data and popup to the map
+            data.bindPopup(function(layer) {
+                var hyper = L.Util.template('{links}', layer.feature.properties);
+                return L.Util.template('<b>MIRACLE NAME</b><br>Condition: {Condition}<br>Video Testimony: ' + hyper, layer.feature.properties);
+            }).addTo(map);
+        }
     </script>
 
 </body></html>
