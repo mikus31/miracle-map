@@ -97,10 +97,16 @@
         L.esri.basemapLayer('ImageryFirefly').addTo(map);
         L.esri.basemapLayer('ImageryLabels').addTo(map);
 
+        var newMarker = L.marker({
+            color: 'ffffff'
+        });
         // need to create a public view of the hosted feature layer in AGO to access point data here
         // the url below is for the public hosted layer view
         var data = L.esri.featureLayer({
-            url: 'https://services9.arcgis.com/fSxmsxg6MME8SObM/arcgis/rest/services/Miracles_GOLD_MASTER_view/FeatureServer/0'
+            url: 'https://services9.arcgis.com/fSxmsxg6MME8SObM/arcgis/rest/services/Miracles_GOLD_MASTER_view/FeatureServer/0',
+            pointToLayer: function(geojson, latlng) {
+                return newMarker
+            }
         });
         addMiracles(data);
 
