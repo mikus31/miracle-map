@@ -92,7 +92,7 @@
     <div id="map"></div>
     <script>
         // create map and set extent
-        var map = L.map('map').setView([39, -90], 5);
+        var map = L.map('map').setView([0, 0], 5);
 
         // add basemap conducive to firefly symbology
         L.esri.basemapLayer('ImageryFirefly').addTo(map);
@@ -118,22 +118,22 @@
                     fillColor: '#67F7D4',
                     fillOpacity: 1,
                 });
-                //                return L.marker(latlng, {
-                //                    icon: icon
-                //            });
             }
-        });
-        addMiracles(data);
+        }).bindPopup(function(layer) {
+            // access a field from the attribute table
+            var video = L.Util.template('{links}', layer.feature.properties);
+            // customize the popup
+            return L.Util.template('<h3>MIRACLE NAME</h3>', layer.feature.properties);
+        }).addTo(map);
 
-        function addMiracles(data) {
-            // add data and popup to the map
-            data.bindPopup(function(layer) {
-                // access a field from the attribute table
-                var video = L.Util.template('{links}', layer.feature.properties);
-                // customize the popup
-                return L.Util.template('<h3>MIRACLE NAME</h3><h4>Condition: {Condition}<br>Video Testimony: {links}</h4>', layer.feature.properties);
-            }).addTo(map);
-        }
+        // reset map extent to the bounds of the features
+        data.query().bounds(function(error, latlngbounds) {
+            if (error) {
+                return;
+            }
+
+            map.fitBounds(latlngbounds);
+        });
     </script>
 
 </body></html>
