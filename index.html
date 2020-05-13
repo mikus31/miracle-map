@@ -105,9 +105,6 @@
             iconSize: [50, 50]
         });
 
-        // var popup = L.Util.template('<h3>MIRACLE NAME</h3>', layer.feature.properties);
-
-
         drawMap();
 
         function drawMap() {
@@ -127,9 +124,9 @@
                 },
                 onEachFeature: function(feature, layer) {
                     layer.on('mouseover', function() {
-                        console.log(layer.feature);
+                        // console.log(layer.feature);
                         layer.bindPopup(function(layer) {
-                            return L.Util.template('<h3>MIRACLE NAME</h3>', layer.feature.properties);
+                            return L.Util.template('<h3>{Name}</h3>', layer.feature.properties);
                         }).openPopup();
                     })
                     layer.on('mouseout', function() {
