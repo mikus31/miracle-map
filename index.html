@@ -76,15 +76,6 @@
             font-family: 'Open Sans', sans-serif;
             font-size: .75em;
         }
-
-        .info {
-            padding: 6px 8px;
-            font-size: 1em;
-            background: rgba(255, 255, 255, 0.8);
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-            border-radius: 5px;
-            text-align: right;
-        }
     </style>
 </head>
 
@@ -143,24 +134,16 @@
 
         function drawMap(data) {
             // code goes here
-            data.addTo(map);
-            data.eachLayer(function(layer) {
-                var tooltipInfo = L.Util.template('<h3>MIRACLE NAME</h3>', layer.feature.properties);
-                layer.bindTooltip(tooltipInfo, {
-                    sticky: true
-                });
-                dataLayer.on('mouseover', function() {
-                    $(".info").show(); // shows the info window on mouseover
-                });
-                dataLayer.on('mouseout', function() {
-                    $(".info").hide(); // hides the info window on mouseout
-                });
-            })
-        }
-
-        function updateInfo(layer) {
-            // code goes here
-            var popup = L.Util.template('<h3>MIRACLE NAME</h3>', layer.feature.properties);
+            data.bindPopup(function(layer) {
+                return L.Util.template('<h3>MIRACLE NAME</h3>', layer.feature.properties);
+            }).addTo(map);
+            // add mouse events to open popup on hover
+            data.on('mouseover', function(e) {
+                this.openPopup();
+            });
+            data.on('mouseout', function(e) {
+                this.closePopup();
+            });
         }
     </script>
 
