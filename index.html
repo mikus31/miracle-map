@@ -105,45 +105,51 @@
             iconSize: [50, 50]
         });
 
-        // need to create a public view of the hosted feature layer in AGO to access point data here
-        // the url below is for the public hosted layer view
-        var data = L.esri.featureLayer({
-            url: 'https://services9.arcgis.com/fSxmsxg6MME8SObM/arcgis/rest/services/Miracles_GOLD_MASTER_view/FeatureServer/0',
-            pointToLayer: function(geojson, latlng) {
-                return L.circleMarker(latlng, {
-                    radius: 8,
-                    color: '#67F7D4',
-                    opacity: .5,
-                    weight: 6,
-                    fillColor: '#67F7D4',
-                    fillOpacity: 1,
-                });
-            }
-        });
+        // var popup = L.Util.template('<h3>MIRACLE NAME</h3>', layer.feature.properties);
 
-        // reset map extent to the bounds of the features
-        data.query().bounds(function(error, latlngbounds) {
-            if (error) {
-                return;
-            }
 
-            map.fitBounds(latlngbounds);
-        });
+        drawMap();
 
-        drawMap(data);
-
-        function drawMap(data) {
-            // code goes here
-            data.bindPopup(function(layer) {
-                return L.Util.template('<h3>MIRACLE NAME</h3>', layer.feature.properties);
+        function drawMap() {
+            // need to create a public view of the hosted feature layer in AGO to access point data here
+            var data = L.esri.featureLayer({
+                // the url below is for the public hosted layer view
+                url: 'https://services9.arcgis.com/fSxmsxg6MME8SObM/arcgis/rest/services/Miracles_GOLD_MASTER_view/FeatureServer/0',
+                pointToLayer: function(geojson, latlng) {
+                    return L.circleMarker(latlng, {
+                        radius: 8,
+                        color: '#67F7D4',
+                        opacity: .5,
+                        weight: 6,
+                        fillColor: '#67F7D4',
+                        fillOpacity: 1,
+                    });
+                },
+                onEachFeature: function(feature, layer) {
+                    layer.on('mouseover', function() {
+                        console.log(layer.feature);
+                        layer.bindPopup(function(layer) {
+                            return L.Util.template('<h3>MIRACLE NAME</h3>', layer.feature.properties);
+                        }).openPopup();
+                    })
+                    layer.on('mouseout', function() {
+                        layer.closePopup();
+                    })
+                }
             }).addTo(map);
-            // add mouse events to open popup on hover
-            data.on('mouseover', function(e) {
-                this.openPopup();
+
+            // reset map extent to the bounds of the features
+            data.query().bounds(function(error, latlngbounds) {
+                if (error) {
+                    return;
+                }
+                map.fitBounds(latlngbounds);
             });
-            data.on('mouseout', function(e) {
-                this.closePopup();
-            });
+
+            // bind the popup to the data points
+            //            data.bindPopup(function(layer) {
+            // return L.Util.template('<h3>MIRACLE NAME</h3>', layer.feature.properties);
+            // });
         }
     </script>
 
