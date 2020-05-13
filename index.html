@@ -94,7 +94,7 @@
         // create map and set extent
         var map = L.map('map').setView([0, 0], 5);
 
-        // add basemap conducive to firefly symbology
+        // add basemap and labels conducive to firefly symbology
         L.esri.basemapLayer('ImageryFirefly').addTo(map);
         L.esri.basemapLayer('ImageryLabels').addTo(map);
 
@@ -119,12 +119,7 @@
                     fillOpacity: 1,
                 });
             }
-        }).bindPopup(function(layer) {
-            // access a field from the attribute table
-            var video = L.Util.template('{links}', layer.feature.properties);
-            // customize the popup
-            return L.Util.template('<h3>MIRACLE NAME</h3>', layer.feature.properties);
-        }).addTo(map);
+        });
 
         // reset map extent to the bounds of the features
         data.query().bounds(function(error, latlngbounds) {
@@ -134,6 +129,23 @@
 
             map.fitBounds(latlngbounds);
         });
+
+        drawMap(data);
+
+        function drawMap(data) {
+            // code goes here
+            data.bindPopup(function(layer) {
+                // access a field from the attribute table
+                var video = L.Util.template('{links}', layer.feature.properties);
+                // customize the popup
+                return L.Util.template('<h3>MIRACLE NAME</h3>', layer.feature.properties);
+            }).addTo(map)
+        }
+
+        function updateInfo(layer) {
+            // code goes here
+            var popup = L.Util.template('<h3>MIRACLE NAME</h3>', layer.feature.properties);
+        }
     </script>
 
 </body></html>
