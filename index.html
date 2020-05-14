@@ -42,6 +42,23 @@
             border-radius: 5px;
         }
 
+        .button {
+            background-color: #11fd9d;
+            /* Green */
+            border: none;
+            padding: 5px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            bottom: 10px;
+            left: 10px;
+            position: absolute;
+            z-index: 1001;
+            border-radius: 5px;
+            height: 20px;
+            width: 125px;
+        }
+
         h1 {
             font-family: 'Abril Fatface', cursive;
             font-size: 2em;
@@ -49,7 +66,7 @@
             color: #35605A;
             position: relative;
             top: -25px;
-            text-shadow: 2px 2px 4px grey;
+            /*            text-shadow: 2px 2px 4px grey;*/
             letter-spacing: 1.25px;
         }
 
@@ -63,22 +80,24 @@
 
         h3 {
             font-family: 'Abril Fatface', cursive;
-            font-size: 1.5em;
+            font-size: 1.25em;
             font-weight: normal;
             color: #343434;
         }
-
 
         h4 {
             font-family: 'Open Sans', sans-serif;
             font-size: 1em;
-            font-weight: normal;
-            color: #343434;
+            position: relative;
+            bottom: 14px;
+            color: #f5f5f5;
+            letter-spacing: 1.1px;
+
         }
 
         p {
             font-family: 'Open Sans', sans-serif;
-            font-size: .75em;
+            font-size: 1em;
             color: #f5f5f5;
         }
 
@@ -111,10 +130,12 @@
             <h2>Explain the map's purpose here<br>
                 <a href='https://survey123.arcgis.com/share/4a29e55a7808471894ccc8d9f370820b?portalUrl=https://miraclemapper.maps.arcgis.com' target="_blank">SUBMIT A MIRACLE</a></h2>
         </center>
-
-
     </div>
-    <div id="map"></div>
+    <div id="map">
+        <div class="button">
+            <h4>SUBMIT A MIRACLE</h4>
+        </div>
+    </div>
     <script>
         // create map and set extent
         var map = L.map('map').setView([0, 0], 5);
