@@ -163,7 +163,7 @@
             // need to create a public view of the hosted feature layer in AGO to access point data here
             var data = L.esri.featureLayer({
                 // the url below is for the public hosted layer view
-                url: 'https://services9.arcgis.com/fSxmsxg6MME8SObM/arcgis/rest/services/Miracles_GOLD_MASTER_view/FeatureServer/0',
+                url: 'https://services9.arcgis.com/fSxmsxg6MME8SObM/arcgis/rest/services/miracles_view_layer/FeatureServer/0',
                 pointToLayer: function(geojson, latlng) {
                     // custom circleMarker
                     //                    return L.circleMarker(latlng, {
