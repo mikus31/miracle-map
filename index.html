@@ -43,6 +43,26 @@
             padding: 2px;
         }
 
+        #query {
+            position: absolute;
+            top: 90px;
+            right: 10px;
+            z-index: 1000;
+            background: #f5f5f5;
+            padding: 1em;
+            font-family: 'Open Sans', sans-serif;
+            font-size: .75em;
+            color: #343434;
+            opacity: .8;
+
+        }
+
+        #query select {
+            font-size: 1.25em;
+            font-family: 'Open Sans', sans-serif;
+            color: #343434;
+        }
+
         .button {
             background-color: #35605A;
             padding: 2px;
@@ -101,7 +121,7 @@
         p {
             font-family: 'Open Sans', sans-serif;
             font-size: 1em;
-            color: #f5f5f5;
+            color: #343434;
         }
 
 
@@ -142,6 +162,20 @@
             </div>
         </a>
     </div>
+
+    <div id="query" class="leaflet-bar">
+        <label>
+            Review Status:
+            <select id="review">
+                <!-- make sure to encase string values in single quotes for valid sql -->
+                <option value="1=1">Any</option>
+                <option value="review_status='0'">Pending</option>
+                <option value="review_status='1'">Approved</option>
+                <option value="review_status='2'">Denied</option>
+            </select>
+        </label>
+    </div>
+
     <script>
         // create map and set extent
         var map = L.map('map').setView([0, 0], 5);
@@ -180,10 +214,11 @@
                     });
                 },
                 onEachFeature: function(feature, layer) {
+                    var popup = L.Util.template('<h3>{Name}</h3><p>Test<br>More info here<br>YouTube link here</p>', layer.feature.properties);
                     layer.on('mouseover', function() {
                         // console.log(layer.feature);
                         layer.bindPopup(function(layer) {
-                            return L.Util.template('<h3>{Name}</h3>', layer.feature.properties);
+                            return popup;
                         }).openPopup();
                     })
                     layer.on('mouseout', function() {
@@ -191,6 +226,12 @@
                     })
                 }
             }).addTo(map);
+
+            // add listener here for drop-down menu
+            var reviewStatus = document.getElementById('review');
+            reviewStatus.addEventListener('change', function() {
+                data.setWhere(reviewStatus.value);
+            });
 
             // reset map extent to the bounds of the features
             data.query().bounds(function(error, latlngbounds) {
