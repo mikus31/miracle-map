@@ -27,9 +27,9 @@ A few notes from the client provided with the mockup:
 A list of requirements for the delivery:
 
 * Custom build (the map should not look like an out-of-the-box solution)
-* Web map to function as the website
+* Web map can function as the website
 * Link on the map to external web page, where users can submit a miracle via a form
-* Firefly-inspired style (firefly symbology, dark base map)
+* Firefly-inspired style (firefly symbology, firefly base map)
 * Drop-down menus for categorical data within the dataset:
   * By condition
   * By location
@@ -40,6 +40,23 @@ A list of requirements for the delivery:
 
 * A running miracle counter?
 * An "About" page?
+
+## Admin Reports
+
+The admin requested the ability to query the data for the following information:
+
+* By condition
+* By location
+* By forgiveness
+* By instant or gradual
+  * If gradual, by healing timeframe
+* By faith (own or the faith of another)
+* By church affiliation
+* By church denomination (break-down)
+* By already a believer or not
+* By length of time a believer
+* By change in mindset
+* By mindset type
 
 ## Reference
 
