@@ -28,12 +28,17 @@ A list of requirements for the delivery:
 
 * Custom build (the map should not look like an out-of-the-box solution)
 * Web map to function as the website
-* Link on the map to external web page, where users can submit a miracle via a Survey123 form
+* Link on the map to external web page, where users can submit a miracle via a form
 * Firefly-inspired style (firefly symbology, dark base map)
-* Drop-down box for categorical data within the dataset
+* Drop-down menus for categorical data within the dataset
+  * By condition
+  * By location
 * Hover / popup functionality (name of the miracle as the focus)
-* A running tally of miracles?
-* A location filter?
+* A time slider
+
+### Ideas for the Future
+
+* A running miracle counter?
 * An "About" page?
 
 ## Reference
