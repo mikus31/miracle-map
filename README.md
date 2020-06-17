@@ -30,7 +30,7 @@ A list of requirements for the delivery:
 * Web map to function as the website
 * Link on the map to external web page, where users can submit a miracle via a form
 * Firefly-inspired style (firefly symbology, dark base map)
-* Drop-down menus for categorical data within the dataset
+* Drop-down menus for categorical data within the dataset:
   * By condition
   * By location
 * Hover / popup functionality (name of the miracle as the focus)
