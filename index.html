@@ -215,6 +215,7 @@
                     });
                 },
                 onEachFeature: function(feature, layer) {
+                    var sqlLinks = "Video Link is not 'null'";
                     var links = '<a href = {links} target=blank>{links}</a>';
                     var popup = L.Util.template('<h3>{Name}</h3><p>Test<br>More info here<br><a href = {links} target=blank>{links}</a></p>', layer.feature.properties);
                     layer.on('mouseover', function() {
@@ -222,9 +223,11 @@
                         layer.bindPopup(function(layer) {
                             return popup;
                         });
+                        // replace above line with the following line if you want hover popup
                         // }).openPopup();
                     })
                     layer.on('mouseout', function() {
+                        // turning this off so that users can click on the video hyperlinks
                         // layer.closePopup();
                     })
                 }
