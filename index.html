@@ -300,9 +300,8 @@
                     });
                 },
                 onEachFeature: function(feature, layer) {
-                    var sqlLinks = "Video Link is not 'null'";
                     var links = '<a href = {links} target=blank>{links}</a>';
-                    var popup = L.Util.template('<h3>{Name}</h3><p>Test<br>More info here<br><a href = {links} target=blank>{links}</a></p>', layer.feature.properties);
+                    var popup = L.Util.template('<h3>{Name}</h3><p>Test<br>More info here<br><br>Link to video testimony:<br><a href = {links} target=blank>{links}</a></p>', layer.feature.properties);
                     layer.on('mouseover', function() {
                         // console.log(layer.feature);
                         layer.bindPopup(function(layer) {
