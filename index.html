@@ -166,13 +166,44 @@
 
     <div id="query" class="leaflet-bar">
         <label>
-            Review Status:
+            Filter by Condition:
             <select id="review">
                 <!-- make sure to encase string values in single quotes for valid sql -->
                 <option value="1=1">Any</option>
-                <option value="review_status='0'">Pending</option>
-                <option value="review_status='1'">Approved</option>
-                <option value="review_status='2'">Denied</option>
+                <option value="Condition='0'">Addiction</option>
+                <option value="Condition='16'">Autoimmune/Inflammatory Disease</option>
+                <option value="Condition='1'">Birth Defect</option>
+                <option value="Condition='2'">Blindness</option>
+                <option value="Condition='3'">Blood Disease</option>
+                <option value="Condition='4'">Cancer</option>
+                <option value="Condition='5'">Chronic Pain</option>
+                <option value="Condition='6'">Deafness</option>
+                <option value="Condition='7'">Death bed</option>
+                <option value="Condition='8'">Diabetes</option>
+                <option value="Condition='9'">Digestive Disorder</option>
+                <option value="Condition='10'">Endocrine Disease</option>
+                <option value="Condition='11'">Evil Spirit</option>
+                <option value="Condition='12'">Eye Disease</option>
+                <option value="Condition='13'">Fever</option>
+                <option value="Condition='14'">Genetic</option>
+                <option value="Condition='15'">Heart Disease</option>
+                <option value="Condition='17'">Infectious Disease</option>
+                <option value="Condition='18'">Infectious Disease/Environmental-Related</option>
+                <option value="Condition='19'">Infertility</option>
+                <option value="Condition='20'">Injury</option>
+                <option value="Condition='21'">Kidney/Urinary Disease</option>
+                <option value="Condition='22'">Leprosy</option>
+                <option value="Condition='23'">Liver Disease</option>
+                <option value="Condition='24'">Lung Disease</option>
+                <option value="Condition='25'">Mental Illness</option>
+                <option value="Condition='26'">Neurological Disease</option>
+                <option value="Condition='27'">Non-infectious Communicable Disease</option>
+                <option value="Condition='28'">Paralysis</option>
+                <option value="Condition='29'">Raised from the Dead</option>
+                <option value="Condition='30'">Skin Disease</option>
+                <option value="Condition='31'">Spirit of Infirmity</option>
+                <option value="Condition='32'">Viral Disease</option>
+                <option value="Condition='33'">Other</option>
             </select>
         </label>
     </div>
@@ -222,13 +253,13 @@
                         // console.log(layer.feature);
                         layer.bindPopup(function(layer) {
                             return popup;
-                        });
-                        // replace above line with the following line if you want hover popup
-                        // }).openPopup();
+                        }).openPopup();
+                        // replace above line with the following line if you want sticky popup
+                        // });
                     })
                     layer.on('mouseout', function() {
-                        // turning this off so that users can click on the video hyperlinks
-                        // layer.closePopup();
+                        // turn this off if you want users to click on the video hyperlinks
+                        layer.closePopup();
                     })
                 }
             }).addTo(map);
