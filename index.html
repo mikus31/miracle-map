@@ -127,12 +127,15 @@
             font-family: 'Open Sans', sans-serif;
             font-size: 1em;
             color: #35605A;
+            word-wrap: break-word;
         }
 
         a:visited {
             font-family: 'Open Sans', sans-serif;
             font-size: 1em;
             color: #11fd9d;
+            word-wrap: break-word;
+
         }
 
         a:hover {
@@ -212,15 +215,17 @@
                     });
                 },
                 onEachFeature: function(feature, layer) {
-                    var popup = L.Util.template('<h3>{Name}</h3><p>Test<br>More info here<br>YouTube link here</p>', layer.feature.properties);
+                    var links = '<a href = {links} target=blank>{links}</a>';
+                    var popup = L.Util.template('<h3>{Name}</h3><p>Test<br>More info here<br><a href = {links} target=blank>{links}</a></p>', layer.feature.properties);
                     layer.on('mouseover', function() {
                         // console.log(layer.feature);
                         layer.bindPopup(function(layer) {
                             return popup;
-                        }).openPopup();
+                        });
+                        // }).openPopup();
                     })
                     layer.on('mouseout', function() {
-                        layer.closePopup();
+                        // layer.closePopup();
                     })
                 }
             }).addTo(map);
