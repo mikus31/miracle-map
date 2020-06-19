@@ -64,6 +64,27 @@
             color: #343434;
         }
 
+        #query-location {
+            position: absolute;
+            top: 140px;
+            right: 10px;
+            z-index: 1000;
+            background: #f5f5f5;
+            padding: 1em;
+            font-family: 'Open Sans', sans-serif;
+            font-size: .75em;
+            font-weight: bold;
+            color: #343434;
+            opacity: .8;
+
+        }
+
+        #query-location select {
+            font-size: 1em;
+            font-family: 'Open Sans', sans-serif;
+            color: #343434;
+        }
+
         .button {
             background-color: #35605A;
             padding: 2px;
@@ -166,8 +187,8 @@
 
     <div id="query" class="leaflet-bar">
         <label>
-            Filter by Condition:
-            <select id="review">
+            Condition:
+            <select id="condition">
                 <!-- make sure to encase string values in single quotes for valid sql -->
                 <option value="1=1">Any</option>
                 <option value="Condition='0'">Addiction</option>
@@ -204,6 +225,39 @@
                 <option value="Condition='31'">Spirit of Infirmity</option>
                 <option value="Condition='32'">Viral Disease</option>
                 <option value="Condition='33'">Other</option>
+            </select>
+        </label>
+    </div>
+
+    <div id="query-location" class="leaflet-bar">
+        <label>
+            Location:
+            <select id="location">
+                <!-- make sure to encase string values in single quotes for valid sql -->
+                <option value="1=1">Any</option>
+                <option value="region='0'">Antarctica</option>
+                <option value="region='1'">Asiatic Russia</option>
+                <option value="region='3'">Australia/New Zealand</option>
+                <option value="region='4'">Caribbean</option>
+                <option value="region='5'">Central America</option>
+                <option value="region='6'">Central Asia</option>
+                <option value="region='7'">Eastern Africa</option>
+                <option value="region='8'">Eastern Asia</option>
+                <option value="region='9'">Eastern Europe</option>
+                <option value="region='10'">European Russia</option>
+                <option value="region='11'">Melanesia</option>
+                <option value="region='12'">Middle Africa</option>
+                <option value="region='13'">Middle East</option>
+                <option value="region='14'">Northern Africa</option>
+                <option value="region='15'">Northern America</option>
+                <option value="region='16'">Northern Europe</option>
+                <option value="region='17'">Polynesia</option>
+                <option value="region='18'">South America</option>
+                <option value="region='19'">Southern Asia</option>
+                <option value="region='20'">Southern Europe</option>
+                <option value="region='21'">Western Africa</option>
+                <option value="region='22'">Western Asia</option>
+                <option value="region='23'">Western Europe</option>
             </select>
         </label>
     </div>
@@ -264,10 +318,16 @@
                 }
             }).addTo(map);
 
-            // add listener here for drop-down menu
-            var reviewStatus = document.getElementById('review');
-            reviewStatus.addEventListener('change', function() {
-                data.setWhere(reviewStatus.value);
+            // add listener here for condition drop-down menu
+            var condition = document.getElementById('condition');
+            condition.addEventListener('change', function() {
+                data.setWhere(condition.value);
+            });
+
+            // add listener here for location drop-down menu
+            var location = document.getElementById('location');
+            location.addEventListener('change', function() {
+                data.setWhere(location.value);
             });
 
             // reset map extent to the bounds of the features
