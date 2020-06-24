@@ -186,6 +186,22 @@
 </head>
 
 <body>
+    <!--    title bar style inspired by Lis Fano's glacier map: https://efano.github.io/GNP-glaciers/index.html#-->
+    <div class="navbarParent">
+        <div class="navbar">
+            <div class="fullTitle">
+                <div class="logo">
+                    <img id="miracle-icon" src="images/miracle-test.svg">
+                </div>
+                <div class="fullTitleText">
+                    <span class="navbar-title">The Miracle Map</span>
+                    <span class="vl">|</span>
+                    <span class="navbar-subtitle">A user-generated, interactive web map of miracles from around the world</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="map">
         <a href='https://arcg.is/1fnqKS' target="_blank">
             <div class="button">
@@ -273,85 +289,72 @@
     </label>
 </div>-->
 
-    <div class="navbarParent">
-        <div class="navbar">
-            <div class="fullTitle">
-                <div class="logo">
-                    <img id="miracle-icon" src="images/miracle-test.svg">
-                </div>
-                <div class="fullTitleText">
-                    <span class="navbar-title">The Miracle Map</span>
-                    <span class="vl">|</span>
-                    <span class="navbar-subtitle">A user-generated, interactive web map of miracles from around the world</span>
-                </div>
-            </div>
+    <script>
+        // create map and set extent
+        var map = L.map('map').setView([0, 0], 5);
 
-            <script>
-                // create map and set extent
-                var map = L.map('map').setView([0, 0], 5);
+        // add basemap and labels conducive to firefly symbology
+        L.esri.basemapLayer('ImageryFirefly').addTo(map);
+        L.esri.basemapLayer('ImageryLabels').addTo(map);
 
-                // add basemap and labels conducive to firefly symbology
-                L.esri.basemapLayer('ImageryFirefly').addTo(map);
-                L.esri.basemapLayer('ImageryLabels').addTo(map);
+        // create an icon for the points
+        // a cross?
+        var icon = L.icon({
+            iconUrl: './images/firefly-4.png',
+            iconSize: [35, 35]
+        });
 
-                // create an icon for the points
-                // a cross?
-                var icon = L.icon({
-                    iconUrl: './images/firefly-4.png',
-                    iconSize: [35, 35]
-                });
+        drawMap();
 
-                drawMap();
-
-                function drawMap() {
-                    // need to create a public view of the hosted feature layer in AGO to access point data here
-                    var data = L.esri.featureLayer({
-                        // the url below is for the public hosted layer view
-                        url: 'https://services9.arcgis.com/fSxmsxg6MME8SObM/arcgis/rest/services/miracles_view_layer/FeatureServer/0',
-                        // add where clause here to filter by review_status = Approved
-                        where: "review_status = '1'",
-                        pointToLayer: function(geojson, latlng) {
-                            return L.marker(latlng, {
-                                icon: icon
-                            });
-                        },
-                        onEachFeature: function(feature, layer) {
-                            var links = '<a href = {links} target=blank>{links}</a>';
-                            var popup = L.Util.template('<h3>{Name}</h3><p>Test<br>More info here<br><br>Link to video testimony:<br><a href = {links} target=blank>{links}</a></p>', layer.feature.properties);
-                            layer.on('mouseover', function() {
-                                // console.log(layer.feature.properties.review_status);
-                                layer.bindPopup(function(layer) {
-                                    return popup;
-                                });
-                            })
-                        }
-                    }).addTo(map);
-
-                    // reset map extent to the bounds of the features
-                    data.query().bounds(function(error, latlngbounds) {
-                        if (error) {
-                            return;
-                        }
-                        map.fitBounds(latlngbounds);
+        function drawMap() {
+            // need to create a public view of the hosted feature layer in AGO to access point data here
+            var data = L.esri.featureLayer({
+                // the url below is for the public hosted layer view
+                url: 'https://services9.arcgis.com/fSxmsxg6MME8SObM/arcgis/rest/services/miracles_view_layer/FeatureServer/0',
+                // add where clause here to filter by review_status = Approved
+                where: "review_status = '1'",
+                pointToLayer: function(geojson, latlng) {
+                    return L.marker(latlng, {
+                        icon: icon
                     });
-
-                    // call the listeners for the drop-down menus
-                    listeners(data);
+                },
+                onEachFeature: function(feature, layer) {
+                    var links = '<a href = {links} target=blank>{links}</a>';
+                    var popup = L.Util.template('<h3>{Name}</h3><p>Test<br>More info here<br><br>Link to video testimony:<br><a href = {links} target=blank>{links}</a></p>', layer.feature.properties);
+                    layer.on('mouseover', function() {
+                        // console.log(layer.feature.properties.review_status);
+                        layer.bindPopup(function(layer) {
+                            return popup;
+                        });
+                    })
                 }
+            }).addTo(map);
 
-                function listeners(data) {
-                    // add listener here for condition drop-down menu
-                    var condition = document.getElementById('condition');
-                    condition.addEventListener('change', function() {
-                        data.setWhere(condition.value);
-                    });
-
-                    // add listener here for location drop-down menu
-                    //            var location = document.getElementById('location');
-                    // location.addEventListener('change', function() {
-                    // data.setWhere(location.value);
-                    // });
+            // reset map extent to the bounds of the features
+            data.query().bounds(function(error, latlngbounds) {
+                if (error) {
+                    return;
                 }
-            </script>
+                map.fitBounds(latlngbounds);
+            });
+
+            // call the listeners for the drop-down menus
+            listeners(data);
+        }
+
+        function listeners(data) {
+            // add listener here for condition drop-down menu
+            var condition = document.getElementById('condition');
+            condition.addEventListener('change', function() {
+                data.setWhere(condition.value);
+            });
+
+            // add listener here for location drop-down menu
+            //            var location = document.getElementById('location');
+            // location.addEventListener('change', function() {
+            // data.setWhere(location.value);
+            // });
+        }
+    </script>
 
 </body></html>
