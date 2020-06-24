@@ -164,7 +164,6 @@
             font-size: 1em;
             color: #11fd9d;
         }
-
     </style>
 </head>
 
@@ -285,16 +284,6 @@
                 // the url below is for the public hosted layer view
                 url: 'https://services9.arcgis.com/fSxmsxg6MME8SObM/arcgis/rest/services/miracles_view_layer/FeatureServer/0',
                 pointToLayer: function(geojson, latlng) {
-                    // custom circleMarker
-                    //                    return L.circleMarker(latlng, {
-                    //                        radius: 8,
-                    //                        color: '#67F7D4',
-                    //                        opacity: .5,
-                    //                        weight: 6,
-                    //                        fillColor: '#67F7D4',
-                    //                        fillOpacity: 1,
-                    //                    });
-                    // custom icon
                     return L.marker(latlng, {
                         icon: icon
                     });
@@ -306,17 +295,23 @@
                         // console.log(layer.feature);
                         layer.bindPopup(function(layer) {
                             return popup;
-                        }).openPopup();
-                        // replace above line with the following line if you want sticky popup
-                        // });
-                    })
-                    layer.on('mouseout', function() {
-                        // turn this off if you want users to click on the video hyperlinks
-                        layer.closePopup();
+                        });
                     })
                 }
             }).addTo(map);
 
+            // reset map extent to the bounds of the features
+            data.query().bounds(function(error, latlngbounds) {
+                if (error) {
+                    return;
+                }
+                map.fitBounds(latlngbounds);
+            });
+
+            listeners(data);
+        }
+
+        function listeners(data) {
             // add listener here for condition drop-down menu
             var condition = document.getElementById('condition');
             condition.addEventListener('change', function() {
@@ -328,23 +323,7 @@
             location.addEventListener('change', function() {
                 data.setWhere(location.value);
             });
-
-            // reset map extent to the bounds of the features
-            data.query().bounds(function(error, latlngbounds) {
-                if (error) {
-                    return;
-                }
-                map.fitBounds(latlngbounds);
-            });
-
-            // bind the popup to the data points
-            //            data.bindPopup(function(layer) {
-            // return L.Util.template('<h3>MIRACLE NAME</h3>', layer.feature.properties);
-            // });
         }
-
     </script>
 
-</body>
-
-</html>
+</body></html>
