@@ -17,6 +17,10 @@
 
 
     <style>
+        * {
+            font-family: 'Open Sans', sans-serif;
+        }
+
         body {
             margin: 0;
             padding: 0;
@@ -24,38 +28,76 @@
 
         #map {
             position: absolute;
-            top: 0;
+            top: 50px;
             bottom: 0;
-            right: 0;
-            left: 0;
+            width: 100%;
+            z-index: 1001;
         }
 
-        #title {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 275px;
-            height: 65px;
-            background-color: #f5f5f5;
-            z-index: 1000;
-            opacity: .8;
-            border-radius: 5px;
-            padding: 2px;
+        .navbarParent {
+            background: white;
+            box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            margin: auto;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            height: 50px;
+            align-content: center;
+        }
+
+        .fullTitle {
+            padding-top: 8px;
+            padding-left: 16px;
+        }
+
+        #miracle-icon {
+            width: 32px;
+            height: 32px;
+        }
+
+        .fullTitleText {
+            margin-top: -37px;
+            margin-left: 40px;
+            align-content: center;
+        }
+
+        .navbar-title {
+            font-size: 30px;
+            font-weight: normal;
+            color: #35605A;
+            font-family: 'Abril Fatface', cursive;
+            letter-spacing: 1.25px;
+        }
+
+        .vl {
+            color: #989898;
+            font-size: 24px;
+            font-weight: lighter;
+            margin-right: 6px;
+            margin-left: 6px;
+        }
+
+        .navbar-subtitle {
+            font-size: 17px;
+            font-weight: normal;
+            font-style: normal;
+            color: #989898;
         }
 
         #query {
-            position: absolute;
-            top: 90px;
+            position: fixed;
+            top: 10px;
             right: 10px;
-            z-index: 1000;
-            background: #f5f5f5;
-            padding: 1em;
-            font-family: 'Open Sans', sans-serif;
+            z-index: 1001;
             font-size: .75em;
             font-weight: bold;
             color: #343434;
-            opacity: .8;
-
         }
 
         #query select {
@@ -107,7 +149,6 @@
             font-size: 2em;
             font-weight: normal;
             color: #35605A;
-            /*            text-shadow: 2px 2px 4px grey;*/
             letter-spacing: 1.25px;
             margin: 0;
         }
@@ -117,6 +158,8 @@
             font-size: .75em;
             color: #343434;
             margin: 0;
+            display: inline;
+            float: none;
         }
 
         h3 {
@@ -168,12 +211,6 @@
 </head>
 
 <body>
-    <div id="title">
-        <center>
-            <h1>The Miracle Map</h1>
-            <h2>A worldwide map of miracles</h2>
-        </center>
-    </div>
     <div id="map">
         <a href='https://arcg.is/1fnqKS' target="_blank">
             <div class="button">
@@ -228,103 +265,118 @@
         </label>
     </div>
 
-    <div id="query-location" class="leaflet-bar">
-        <label>
-            Location:
-            <select id="location">
-                <!-- make sure to encase string values in single quotes for valid sql -->
-                <option value="1=1">Any</option>
-                <option value="region='0'">Antarctica</option>
-                <option value="region='1'">Asiatic Russia</option>
-                <option value="region='3'">Australia/New Zealand</option>
-                <option value="region='4'">Caribbean</option>
-                <option value="region='5'">Central America</option>
-                <option value="region='6'">Central Asia</option>
-                <option value="region='7'">Eastern Africa</option>
-                <option value="region='8'">Eastern Asia</option>
-                <option value="region='9'">Eastern Europe</option>
-                <option value="region='10'">European Russia</option>
-                <option value="region='11'">Melanesia</option>
-                <option value="region='12'">Middle Africa</option>
-                <option value="region='13'">Middle East</option>
-                <option value="region='14'">Northern Africa</option>
-                <option value="region='15'">Northern America</option>
-                <option value="region='16'">Northern Europe</option>
-                <option value="region='17'">Polynesia</option>
-                <option value="region='18'">South America</option>
-                <option value="region='19'">Southern Asia</option>
-                <option value="region='20'">Southern Europe</option>
-                <option value="region='21'">Western Africa</option>
-                <option value="region='22'">Western Asia</option>
-                <option value="region='23'">Western Europe</option>
-            </select>
-        </label>
-    </div>
+    <!--<div id="query-location" class="leaflet-bar">
+    <label>
+        Location:
+        <select id="location">
+            make sure to encase string values in single quotes for valid sql
+            <option value="1=1">Any</option>
+            <option value="region='0'">Antarctica</option>
+            <option value="region='1'">Asiatic Russia</option>
+            <option value="region='3'">Australia/New Zealand</option>
+            <option value="region='4'">Caribbean</option>
+            <option value="region='5'">Central America</option>
+            <option value="region='6'">Central Asia</option>
+            <option value="region='7'">Eastern Africa</option>
+            <option value="region='8'">Eastern Asia</option>
+            <option value="region='9'">Eastern Europe</option>
+            <option value="region='10'">European Russia</option>
+            <option value="region='11'">Melanesia</option>
+            <option value="region='12'">Middle Africa</option>
+            <option value="region='13'">Middle East</option>
+            <option value="region='14'">Northern Africa</option>
+            <option value="region='15'">Northern America</option>
+            <option value="region='16'">Northern Europe</option>
+            <option value="region='17'">Polynesia</option>
+            <option value="region='18'">South America</option>
+            <option value="region='19'">Southern Asia</option>
+            <option value="region='20'">Southern Europe</option>
+            <option value="region='21'">Western Africa</option>
+            <option value="region='22'">Western Asia</option>
+            <option value="region='23'">Western Europe</option>
+        </select>
+    </label>
+</div>-->
 
-    <script>
-        // create map and set extent
-        var map = L.map('map').setView([0, 0], 5);
+    <div class="navbarParent">
+        <div class="navbar">
+            <div class="fullTitle">
+                <div class="logo">
+                    <img id="miracle-icon" src="images/miracle-test.svg">
+                </div>
+                <div class="fullTitleText">
+                    <span class="navbar-title">The Miracle Map</span>
+                    <span class="vl">|</span>
+                    <span class="navbar-subtitle">A user-generated, interactive web map of miracles from around the world</span>
+                </div>
+            </div>
 
-        // add basemap and labels conducive to firefly symbology
-        L.esri.basemapLayer('ImageryFirefly').addTo(map);
-        L.esri.basemapLayer('ImageryLabels').addTo(map);
+            <script>
+                // create map and set extent
+                var map = L.map('map').setView([0, 0], 5);
 
-        // create an icon for the points
-        // a cross?
-        var icon = L.icon({
-            iconUrl: './images/firefly-4.png',
-            iconSize: [35, 35]
-        });
+                // add basemap and labels conducive to firefly symbology
+                L.esri.basemapLayer('ImageryFirefly').addTo(map);
+                L.esri.basemapLayer('ImageryLabels').addTo(map);
 
-        drawMap();
+                // create an icon for the points
+                // a cross?
+                var icon = L.icon({
+                    iconUrl: './images/firefly-4.png',
+                    iconSize: [35, 35]
+                });
 
-        function drawMap() {
-            // need to create a public view of the hosted feature layer in AGO to access point data here
-            var data = L.esri.featureLayer({
-                // the url below is for the public hosted layer view
-                url: 'https://services9.arcgis.com/fSxmsxg6MME8SObM/arcgis/rest/services/miracles_view_layer/FeatureServer/0',
-                pointToLayer: function(geojson, latlng) {
-                    return L.marker(latlng, {
-                        icon: icon
+                drawMap();
+
+                function drawMap() {
+                    // need to create a public view of the hosted feature layer in AGO to access point data here
+                    var data = L.esri.featureLayer({
+                        // the url below is for the public hosted layer view
+                        url: 'https://services9.arcgis.com/fSxmsxg6MME8SObM/arcgis/rest/services/miracles_view_layer/FeatureServer/0',
+                        // add where clause here to filter by review_status = Approved
+                        where: "review_status = '1'",
+                        pointToLayer: function(geojson, latlng) {
+                            return L.marker(latlng, {
+                                icon: icon
+                            });
+                        },
+                        onEachFeature: function(feature, layer) {
+                            var links = '<a href = {links} target=blank>{links}</a>';
+                            var popup = L.Util.template('<h3>{Name}</h3><p>Test<br>More info here<br><br>Link to video testimony:<br><a href = {links} target=blank>{links}</a></p>', layer.feature.properties);
+                            layer.on('mouseover', function() {
+                                // console.log(layer.feature.properties.review_status);
+                                layer.bindPopup(function(layer) {
+                                    return popup;
+                                });
+                            })
+                        }
+                    }).addTo(map);
+
+                    // reset map extent to the bounds of the features
+                    data.query().bounds(function(error, latlngbounds) {
+                        if (error) {
+                            return;
+                        }
+                        map.fitBounds(latlngbounds);
                     });
-                },
-                onEachFeature: function(feature, layer) {
-                    var links = '<a href = {links} target=blank>{links}</a>';
-                    var popup = L.Util.template('<h3>{Name}</h3><p>Test<br>More info here<br><br>Link to video testimony:<br><a href = {links} target=blank>{links}</a></p>', layer.feature.properties);
-                    layer.on('mouseover', function() {
-                        // console.log(layer.feature.properties.review_status);
-                        layer.bindPopup(function(layer) {
-                            return popup;
-                        });
-                    })
+
+                    // call the listeners for the drop-down menus
+                    listeners(data);
                 }
-            }).addTo(map);
 
-            // reset map extent to the bounds of the features
-            data.query().bounds(function(error, latlngbounds) {
-                if (error) {
-                    return;
+                function listeners(data) {
+                    // add listener here for condition drop-down menu
+                    var condition = document.getElementById('condition');
+                    condition.addEventListener('change', function() {
+                        data.setWhere(condition.value);
+                    });
+
+                    // add listener here for location drop-down menu
+                    //            var location = document.getElementById('location');
+                    // location.addEventListener('change', function() {
+                    // data.setWhere(location.value);
+                    // });
                 }
-                map.fitBounds(latlngbounds);
-            });
-
-            // call the listeners for the drop-down menus
-            listeners(data);
-        }
-
-        function listeners(data) {
-            // add listener here for condition drop-down menu
-            var condition = document.getElementById('condition');
-            condition.addEventListener('change', function() {
-                data.setWhere(condition.value);
-            });
-
-            // add listener here for location drop-down menu
-            var location = document.getElementById('location');
-            location.addEventListener('change', function() {
-                data.setWhere(location.value);
-            });
-        }
-    </script>
+            </script>
 
 </body></html>
