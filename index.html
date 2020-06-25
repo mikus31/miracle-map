@@ -243,11 +243,11 @@
         <form action="#" id="form">
             <label for="from">
                 From
-                <input id="from" type="date" value="1930-01-01" name="from">
+                <input id="from" type="date" value="0001-01-01" name="from">
             </label>
             <label for="to">
                 To
-                <input id="to" type="date" value="1950-12-31" name="to">
+                <input id="to" type="date" value="2020-06-25" name="to">
             </label>
             <input type="submit" value="Update">
         </form>
@@ -359,6 +359,7 @@
                 url: 'https://services9.arcgis.com/fSxmsxg6MME8SObM/arcgis/rest/services/miracles_view_layer/FeatureServer/0',
                 // add where clause here to filter by review_status = Approved
                 where: "review_status = '1'",
+                timeField: "Date_of_miracle",
                 from: new Date(startTimeInput.value),
                 to: new Date(endTimeInput.value),
                 pointToLayer: function(geojson, latlng) {
