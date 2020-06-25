@@ -88,6 +88,38 @@
             color: #989898;
         }
 
+        #time-ranges {
+            position: absolute;
+            bottom: 40px;
+            left: 10px;
+            z-index: 1001;
+            background: white;
+            font-size: .75em;
+            color: #35605A;
+            font-weight: bold;
+            padding: .5em .5em .1em .5em;
+        }
+
+        #time-ranges input {
+            display: inline-block;
+            border: 1px solid #999;
+            font-size: 1em;
+            border-radius: 4px;
+            height: 28px;
+            line-height: 28px;
+            color: #35605A;
+            margin-bottom: -10;
+        }
+
+        #time-ranges input[type='submit'] {
+            box-sizing: content-box;
+            padding: 0 .5em;
+            text-transform: uppercase;
+            color: white;
+            background: #35605A;
+            border-color: #35605A;
+        }
+
         #query {
             position: fixed;
             top: 9px;
@@ -180,34 +212,6 @@
         a:hover {
             font-size: 1em;
             color: #11fd9d;
-        }
-
-        #time-ranges {
-            position: absolute;
-            top: 60px;
-            right: 10px;
-            z-index: 1001;
-            padding: .5em;
-            background: white;
-            font-size: 12px;
-        }
-
-        #time-ranges input {
-            display: inline-block;
-            border: 1px solid #999;
-            font-size: 12px;
-            border-radius: 4px;
-            height: 28px;
-            line-height: 28px;
-        }
-
-        #time-ranges input[type='submit'] {
-            box-sizing: content-box;
-            padding: 0 .5em;
-            text-transform: uppercase;
-            color: white;
-            background: #5C7DB8;
-            border-color: #5C7DB8;
         }
     </style>
 </head>
