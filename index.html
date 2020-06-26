@@ -328,6 +328,10 @@
                 }
                 map.fitBounds(latlngbounds);
             });
+            // and then zoom in a tad
+            map.setZoom(map.getZoom() + .5);
+            // set the max bounds to prevent user from scrolling beyond bounds
+            map.setMaxBounds(map.getBounds());
         }
 
         function listeners(data) {
