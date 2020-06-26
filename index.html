@@ -115,42 +115,6 @@
             opacity: .8;
         }
 
-        #time-ranges {
-            position: absolute;
-            bottom: 10px;
-            left: 10px;
-            z-index: 1001;
-            background: white;
-            font-size: .75em;
-            color: #35605A;
-            font-weight: bold;
-            padding: .5em .5em .1em .5em;
-        }
-
-        #time-ranges input {
-            display: inline-block;
-            border: 1px solid #989898;
-            font-size: 1em;
-            border-radius: 4px;
-            height: 28px;
-            line-height: 28px;
-            color: #35605A;
-            margin-bottom: -10;
-        }
-
-        #time-ranges input[type='submit'] {
-            box-sizing: content-box;
-            padding: 0 .5em;
-            text-transform: uppercase;
-            color: white;
-            background: #35605A;
-            border-color: #35605A;
-        }
-
-        #time-ranges input[type='submit']:hover {
-            opacity: .8;
-        }
-
         #query {
             position: fixed;
             top: 9px;
@@ -169,10 +133,9 @@
         }
 
         h3 {
-            font-size: 1.5em;
+            font-size: 1.25em;
             font-weight: bold;
             color: #35605A;
-            margin-bottom: -10;
         }
 
         p {
@@ -226,20 +189,6 @@
     </div>
 
     <div id="map">
-    </div>
-
-    <div id="time-ranges" class="leaflet-bar">
-        <form action="#" id="form">
-            <label for="from">
-                From
-                <input id="from" type="date" value="0001-01-01" name="from">
-            </label>
-            <label for="to">
-                To
-                <input id="to" type="date" value="2020-06-25" name="to">
-            </label>
-            <input type="submit" value="Update">
-        </form>
     </div>
 
     <div id="query" class="leaflet-bar">
@@ -320,11 +269,6 @@
 </div>-->
 
     <script>
-        // add time range variables
-        var timeForm = document.getElementById('form');
-        var startTimeInput = document.getElementById('from');
-        var endTimeInput = document.getElementById('to');
-
         // create map and set extent
         var map = L.map('map').setView([0, 0], 5);
 
@@ -348,22 +292,23 @@
                 url: 'https://services9.arcgis.com/fSxmsxg6MME8SObM/arcgis/rest/services/miracles_view_layer/FeatureServer/0',
                 // add where clause here to filter by review_status = Approved
                 where: "review_status = '1'",
-                timeField: "Date_of_miracle",
-                from: new Date(startTimeInput.value),
-                to: new Date(endTimeInput.value),
                 pointToLayer: function(geojson, latlng) {
                     return L.marker(latlng, {
                         icon: icon
                     });
                 },
                 onEachFeature: function(feature, layer) {
-                    var links = '<a href = {links} target=blank>{links}</a>';
-                    var popup = L.Util.template('<h3>{Name}</h3><p>Test<br>More info here<br><br>Link to video testimony:<br><a href = {links} target=blank>{links}</a></p>', layer.feature.properties);
+                    var popupClick = '<h3>{Name}</h3><p>Test<br>More info here<br><br>Link to video testimony:<br><a href = {links} target=blank>{links}</a></p>';
+                    var popupHover = '<h3>{Name}</h3>';
+                    var popup = L.Util.template(popupHover, layer.feature.properties);
                     layer.on('mouseover', function() {
                         // console.log(layer.feature.properties.review_status);
                         layer.bindPopup(function(layer) {
                             return popup;
-                        });
+                        }).openPopup();
+                    })
+                    layer.on('mouseout', function() {
+                        layer.closePopup();
                     })
                 }
             }).addTo(map);
@@ -381,12 +326,6 @@
         }
 
         function listeners(data) {
-            // add listener here for time range
-            timeForm.addEventListener('submit', function updateTimeRange(e) {
-                data.setTimeRange(new Date(startTimeInput.value), new Date(endTimeInput.value));
-                e.preventDefault();
-            });
-
             // add listener here for condition drop-down menu
             var condition = document.getElementById('condition');
             condition.addEventListener('change', function() {
