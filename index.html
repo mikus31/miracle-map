@@ -313,8 +313,10 @@
                 }
             }).addTo(map);
 
-            // call the zoom to data extent
+            // call the zoom to data extent function
             zoom(data);
+            // and then zoom in a tad
+            map.setZoom(map.getZoom() + .5);
 
             // call the listeners for the drop-down menus
             listeners(data);
@@ -328,10 +330,6 @@
                 }
                 map.fitBounds(latlngbounds);
             });
-            // and then zoom in a tad
-            map.setZoom(map.getZoom() + .5);
-            // set the max bounds to prevent user from scrolling beyond bounds
-            map.setMaxBounds(map.getBounds());
         }
 
         function listeners(data) {
