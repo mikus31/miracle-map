@@ -179,8 +179,9 @@
                 </div>
             </div>
             <div class="links">
-                <a href='https://mikus31.github.io/miracle-map/'>
-                    <img id="zoomout-icon" src="images/map-zoom-out-green.png" title="Zoom Out to Map"></a>
+                <!--                make this button zoom to full extent of the map by calling the zoom() function?-->
+                <img id="zoomout-icon" src="images/map-zoom-out-green.png" title="Reset Map" function=zoom(data)>
+                <!--                or add a button to refresh the map?-->
                 <a href='https://arcg.is/1fnqKS' target="_blank">
                     <img id="form-icon" src="images/form-icon-green.png" title="Submit a Miracle">
                 </a>
@@ -313,6 +314,14 @@
                 }
             }).addTo(map);
 
+            // call the zoom to data extent
+            zoom(data);
+
+            // call the listeners for the drop-down menus
+            listeners(data);
+        }
+
+        function zoom(data) {
             // reset map extent to the bounds of the features
             data.query().bounds(function(error, latlngbounds) {
                 if (error) {
@@ -320,9 +329,6 @@
                 }
                 map.fitBounds(latlngbounds);
             });
-
-            // call the listeners for the drop-down menus
-            listeners(data);
         }
 
         function listeners(data) {
