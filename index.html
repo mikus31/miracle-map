@@ -13,6 +13,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Open+Sans&display=swap" rel="stylesheet">
     <!--    Load Material Icons-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--    Load noUiSlider-->
+    <link href="./nouislider/distribute/nouislider.css" rel="stylesheet">
+    <script src="./nouislider/distribute/nouislider.js"></script>
     <style>
         * {
             font-family: 'Open Sans', sans-serif;
@@ -264,8 +267,7 @@
             // need to create a public view of the hosted feature layer in AGO to access point data here
             var data = L.esri.featureLayer({
                 // the url below is for the public hosted layer view
-                url: 'https://services9.arcgis.com/fSxmsxg6MME8SObM/arcgis/rest/services/miracles_view_layer/FeatureServer/0'
-                , // add where clause here to filter by review_status = Approved
+                url: 'https://services9.arcgis.com/fSxmsxg6MME8SObM/arcgis/rest/services/miracles_view_layer/FeatureServer/0', // add where clause here to filter by review_status = Approved
                 where: "review_status = '1'"
                 , pointToLayer: function (geojson, latlng) {
                     return L.marker(latlng, {
