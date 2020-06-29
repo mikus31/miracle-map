@@ -4,30 +4,25 @@
     <meta charset="utf-8" />
     <title>The Miracle Map</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
-
     <!-- Load Leaflet from CDN -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
-
     <!-- Load Esri Leaflet from CDN -->
     <script src="https://unpkg.com/esri-leaflet@2.4.0/dist/esri-leaflet.js" integrity="sha512-kq0i5Xvdq0ii3v+eRLDpa++uaYPlTuFaOYrfQ0Zdjmms/laOwIvLMAxh7cj1eTqqGG47ssAcTY4hjkWydGt6Eg==" crossorigin=""></script>
-
     <!--    Load Google Fonts-->
     <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Open+Sans&display=swap" rel="stylesheet">
-
     <!--    Load Material Icons-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
     <style>
         * {
             font-family: 'Open Sans', sans-serif;
         }
-
+        
         body {
             margin: 0;
             padding: 0;
         }
-
+        
         #map {
             position: absolute;
             top: 50px;
@@ -35,7 +30,7 @@
             width: 100%;
             z-index: 1001;
         }
-
+        
         .navbarParent {
             background: white;
             box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
@@ -45,37 +40,37 @@
             width: 100%;
             margin: auto;
         }
-
+        
         .navbar {
             display: flex;
             justify-content: space-between;
             height: 50px;
             align-content: center;
         }
-
+        
         .fullTitle {
             padding-top: 8px;
             padding-left: 16px;
         }
-
+        
         #miracle-icon {
             width: 35px;
             height: 35px;
         }
-
+        
         .fullTitleText {
             margin-top: -40px;
             margin-left: 45px;
             align-content: center;
         }
-
+        
         .navbar-title {
             font-size: 30px;
             font-weight: bold;
             color: #35605A;
             letter-spacing: 1.25px;
         }
-
+        
         .vl {
             color: #989898;
             font-size: 24px;
@@ -83,38 +78,38 @@
             margin-right: 6px;
             margin-left: 6px;
         }
-
+        
         .navbar-subtitle {
             font-size: 17px;
             font-weight: normal;
             font-style: italic;
             color: #989898;
         }
-
+        
         .links {
             padding-top: 8px;
             padding-left: 16px;
             padding-right: 4px;
         }
-
+        
         #form-icon {
             width: 35px;
             height: 35px;
         }
-
+        
         #form-icon:hover {
             opacity: .8;
         }
-
+        
         #zoomout-icon {
             width: 35px;
             height: 35px;
         }
-
+        
         #zoomout-icon:hover {
             opacity: .8;
         }
-
+        
         #query {
             position: fixed;
             top: 9px;
@@ -125,42 +120,40 @@
             color: #35605A;
             padding: .5em;
         }
-
+        
         #query select {
             font-size: 1em;
             font-family: 'Open Sans', sans-serif;
             color: #35605A;
         }
-
+        
         h3 {
             font-size: 1.25em;
             font-weight: bold;
             color: #35605A;
         }
-
+        
         p {
             font-size: 1em;
             color: #343434;
         }
-
-
+        
         a {
             font-size: 1em;
             color: #35605A;
             word-wrap: break-word;
         }
-
+        
         a:visited {
             font-size: 1em;
             color: #11fd9d;
             word-wrap: break-word;
         }
-
+        
         a:hover {
             font-size: 1em;
             color: #11fd9d;
         }
-
     </style>
 </head>
 
@@ -169,31 +162,18 @@
     <div class="navbarParent">
         <div class="navbar">
             <div class="fullTitle">
-                <div class="logo">
-                    <img id="miracle-icon" src="images/miracle-fish.svg">
-                </div>
-                <div class="fullTitleText">
-                    <span class="navbar-title">The Miracle Map</span>
-                    <span class="vl">|</span>
-                    <span class="navbar-subtitle">A user-generated, interactive web map of miracles from around the world</span>
-                </div>
+                <div class="logo"> <img id="miracle-icon" src="images/miracle-fish.svg"> </div>
+                <div class="fullTitleText"> <span class="navbar-title">The Miracle Map</span> <span class="vl">|</span> <span class="navbar-subtitle">A user-generated, interactive web map of miracles from around the world</span> </div>
             </div>
             <div class="links">
-                <!--                make this button reset the map by calling the drawMap() function-->
-                <img id="zoomout-icon" src="images/map-zoom-out-green.png" title="Reset Map" onmouseover="" style="cursor: pointer" onclick="drawMap()">
-                <a href='https://arcg.is/1fnqKS' target="_blank">
-                    <img id="form-icon" src="images/form-icon-green.png" title="Submit a Miracle">
-                </a>
+                <!--                make this button reset the map by calling the drawMap() function--><img id="zoomout-icon" src="images/map-zoom-out-green.png" title="Reset Map" onmouseover="" style="cursor: pointer" onclick="drawMap()">
+                <a href='https://arcg.is/1fnqKS' target="_blank"> <img id="form-icon" src="images/form-icon-green.png" title="Submit a Miracle"> </a>
             </div>
         </div>
     </div>
-
-    <div id="map">
-    </div>
-
+    <div id="map"> </div>
     <div id="query" class="leaflet-bar">
-        <label>
-            Condition:
+        <label> Condition:
             <select id="condition">
                 <!-- make sure to encase string values in single quotes for valid sql -->
                 <option value="1=1">Any</option>
@@ -234,7 +214,6 @@
             </select>
         </label>
     </div>
-
     <!--<div id="query-location" class="leaflet-bar">
     <label>
         Location:
@@ -267,64 +246,58 @@
         </select>
     </label>
 </div>-->
-
     <script>
         // create map and set extent
         var map = L.map('map').setView([0, 0], 5);
-
         // add basemap and labels conducive to firefly symbology
         L.esri.basemapLayer('ImageryFirefly').addTo(map);
         L.esri.basemapLayer('ImageryLabels').addTo(map);
-
         // create an icon for the points
         // a cross?
         var icon = L.icon({
-            iconUrl: './images/firefly-4.png',
-            iconSize: [35, 35]
+            iconUrl: './images/firefly-4.png'
+            , iconSize: [35, 35]
         });
-
         drawMap();
 
         function drawMap() {
             // need to create a public view of the hosted feature layer in AGO to access point data here
             var data = L.esri.featureLayer({
                 // the url below is for the public hosted layer view
-                url: 'https://services9.arcgis.com/fSxmsxg6MME8SObM/arcgis/rest/services/miracles_view_layer/FeatureServer/0',
-                // add where clause here to filter by review_status = Approved
-                where: "review_status = '1'",
-                pointToLayer: function(geojson, latlng) {
+                url: 'https://services9.arcgis.com/fSxmsxg6MME8SObM/arcgis/rest/services/miracles_view_layer/FeatureServer/0'
+                , // add where clause here to filter by review_status = Approved
+                where: "review_status = '1'"
+                , pointToLayer: function (geojson, latlng) {
                     return L.marker(latlng, {
                         icon: icon
                     });
-                },
-                onEachFeature: function(feature, layer) {
+                }
+                , onEachFeature: function (feature, layer) {
                     var popupClick = '<h3>{Name}</h3><p>Test<br>More info here<br><br>Link to video testimony:<br><a href = {links} target=blank>{links}</a></p>';
                     var popupHover = '<h3>{Name}</h3>';
                     var popup = L.Util.template(popupHover, layer.feature.properties);
-                    layer.on('mouseover', function() {
+                    layer.on('mouseover', function () {
                         // console.log(layer.feature.properties.review_status);
-                        layer.bindPopup(function(layer) {
+                        layer.bindPopup(function (layer) {
                             return popup;
                         }).openPopup();
                     })
-                    layer.on('mouseout', function() {
+                    layer.on('mouseout', function () {
                         layer.closePopup();
                     })
                 }
             }).addTo(map);
-
             // call the zoom to data extent function
             zoom(data);
             // and then zoom in a tad
-            map.setZoom(map.getZoom() + 1);
-
+            // map.setZoom(map.getZoom() + 1);
             // call the listeners for the drop-down menus
             listeners(data);
         }
 
         function zoom(data) {
             // reset map extent to the bounds of the features
-            data.query().bounds(function(error, latlngbounds) {
+            data.query().bounds(function (error, latlngbounds) {
                 if (error) {
                     return;
                 }
@@ -335,19 +308,16 @@
         function listeners(data) {
             // add listener here for condition drop-down menu
             var condition = document.getElementById('condition');
-            condition.addEventListener('change', function() {
+            condition.addEventListener('change', function () {
                 data.setWhere(condition.value);
             });
-
             // add listener here for location drop-down menu
             //            var location = document.getElementById('location');
             // location.addEventListener('change', function() {
             // data.setWhere(location.value);
             // });
         }
-
     </script>
-
 </body>
 
 </html>
