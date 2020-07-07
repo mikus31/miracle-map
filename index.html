@@ -157,6 +157,14 @@
             font-size: 1em;
             color: #11fd9d;
         }
+        
+        #slider {
+            position: absolute;
+            bottom: 20px;
+            left: 10px;
+            width: 20%;
+            z-index: 1002;
+        }
     </style>
 </head>
 
@@ -217,6 +225,7 @@
             </select>
         </label>
     </div>
+    <div id="slider"></div>
     <!--<div id="query-location" class="leaflet-bar">
     <label>
         Location:
@@ -295,6 +304,7 @@
             // map.setZoom(map.getZoom() + 1);
             // call the listeners for the drop-down menus
             listeners(data);
+            addSlider();
         }
 
         function zoom(data) {
@@ -318,6 +328,18 @@
             // location.addEventListener('change', function() {
             // data.setWhere(location.value);
             // });
+        }
+
+        function addSlider() {
+            var slider = document.getElementById('slider');
+            noUiSlider.create(slider, {
+                start: [20, 80]
+                , connect: true
+                , range: {
+                    'min': 0
+                    , 'max': 100
+                }
+            });
         }
     </script>
 </body>
