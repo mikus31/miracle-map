@@ -288,7 +288,7 @@
                     var popupHover = '<h3>{Name}</h3>';
                     var popup = L.Util.template(popupHover, layer.feature.properties);
                     layer.on('mouseover', function () {
-                        // console.log(layer.feature.properties.review_status);
+                        console.log(layer.feature.properties.miracle_year);
                         layer.bindPopup(function (layer) {
                             return popup;
                         }).openPopup();
