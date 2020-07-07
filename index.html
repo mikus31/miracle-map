@@ -161,7 +161,7 @@
         #slider {
             position: absolute;
             bottom: 20px;
-            left: 20px;
+            left: 25px;
             width: 20%;
             z-index: 1002;
         }
@@ -333,11 +333,15 @@
         function addSlider() {
             var slider = document.getElementById('slider');
             noUiSlider.create(slider, {
-                start: [20, 80]
-                , connect: true
+                connect: true
+                , tooltips: [true, true]
+                , behavior: 'tap'
+                , start: [1, 2020]
                 , range: {
-                    'min': 0
-                    , 'max': 100
+                    'min': [1, 132]
+                    , '10%': [132, 1864]
+                    , '50%': [1996, 1]
+                    , 'max': [2020]
                 }
             });
         }
