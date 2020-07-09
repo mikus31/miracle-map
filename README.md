@@ -57,6 +57,7 @@ The admin requested the ability to query the data for the following information:
 * By length of time a believer
 * By change in mindset
 * By mindset type
+* By population density (rate per 100k)
 
 ## Reference
 
