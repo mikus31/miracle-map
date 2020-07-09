@@ -16,6 +16,8 @@
     <!--    Load noUiSlider-->
     <link href="./nouislider/distribute/nouislider.css" rel="stylesheet">
     <script src="./nouislider/distribute/nouislider.js"></script>
+    <!--    Load wNumb-->
+    <script src="./wnumb/wNumb.js"></script>
     <style>
         * {
             font-family: 'Open Sans', sans-serif;
@@ -334,6 +336,9 @@
             var slider = document.getElementById('slider');
             noUiSlider.create(slider, {
                 connect: true
+                , format: wNumb({
+                    decimals: 0
+                })
                 , tooltips: [true, true]
                 , behavior: 'tap'
                 , start: [132, 2020]
