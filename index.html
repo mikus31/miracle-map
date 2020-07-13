@@ -6,9 +6,13 @@
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
     <!-- Load Leaflet from CDN -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
+    <!-- Load Mapbox GL -->
+    <link rel="stylesheet" href="https://unpkg.com/mapbox-gl/dist/mapbox-gl.css" />
+    <script src="https://unpkg.com/mapbox-gl/dist/mapbox-gl.js"></script>
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
     <!-- Load Esri Leaflet from CDN -->
     <script src="https://unpkg.com/esri-leaflet@2.4.0/dist/esri-leaflet.js" integrity="sha512-kq0i5Xvdq0ii3v+eRLDpa++uaYPlTuFaOYrfQ0Zdjmms/laOwIvLMAxh7cj1eTqqGG47ssAcTY4hjkWydGt6Eg==" crossorigin=""></script>
+    <script src="https://unpkg.com/esri-leaflet-vector/dist/esri-leaflet-vector.js"></script>
     <!--    Load Google Fonts-->
     <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Open+Sans&display=swap" rel="stylesheet">
     <!--    Load Material Icons-->
@@ -259,6 +263,8 @@
         // add basemap (and labels basemap?)
         L.esri.basemapLayer('DarkGray').addTo(map);
         // L.esri.basemapLayer('ImageryLabels').addTo(map);
+        // add a vector basemap
+        // L.esri.Vector.basemap('DarkGray').addTo(map);
         // create an icon for the points
         // a cross?
         var icon = L.icon({
