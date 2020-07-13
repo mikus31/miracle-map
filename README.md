@@ -46,7 +46,7 @@ A list of requirements for the delivery:
 The admin requested the ability to query the data for the following information:
 
 * By condition
-* By location
+* By location (including region)
 * By forgiveness
 * By instant or gradual
   * If gradual, by healing timeframe
@@ -58,6 +58,7 @@ The admin requested the ability to query the data for the following information:
 * By change in mindset
 * By mindset type
 * By population density (rate per 100k)
+* By age
 
 ## Reference
 
