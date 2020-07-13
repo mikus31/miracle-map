@@ -97,24 +97,6 @@
             padding-right: 4px;
         }
         
-        #form-icon {
-            width: 35px;
-            height: 35px;
-        }
-        
-        #form-icon:hover {
-            opacity: .8;
-        }
-        
-        #zoomout-icon {
-            width: 35px;
-            height: 35px;
-        }
-        
-        #zoomout-icon:hover {
-            opacity: .8;
-        }
-        
         #query {
             position: fixed;
             top: 9px;
@@ -167,6 +149,14 @@
             width: 20%;
             z-index: 1002;
         }
+        
+        .material-icons.md-36 {
+            font-size: 36px;
+        }
+        
+        .material-icons.green356 {
+            color: #35605A;
+        }
     </style>
 </head>
 
@@ -178,9 +168,8 @@
                 <div class="logo"> <img id="miracle-icon" src="images/miracle-fish.svg"> </div>
                 <div class="fullTitleText"> <span class="navbar-title">The Miracle Map</span> <span class="vl">|</span> <span class="navbar-subtitle">A user-generated, interactive web map of miracles from around the world</span> </div>
             </div>
-            <div class="links">
-                <!--                make this button reset the map by calling the drawMap() function--><img id="zoomout-icon" src="images/map-zoom-out-green.png" title="Reset Map" onmouseover="" style="cursor: pointer" onclick="drawMap()">
-                <a href='https://arcg.is/1fnqKS' target="_blank"> <img id="form-icon" src="images/form-icon-green.png" title="Submit a Miracle"> </a>
+            <div class="links"> <i class="material-icons md-36 green356" title="Reset Map" onmouseover="" style="cursor: pointer" onclick="drawMap()">refresh</i>
+                <a href='https://arcg.is/1fnqKS' target="_blank"> <i class="material-icons md-36 green356" title="Submit a Miracle">add_box</i> </a>
             </div>
         </div>
     </div>
