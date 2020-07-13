@@ -261,10 +261,10 @@
         // create map and set extent
         var map = L.map('map').setView([0, 0], 5);
         // add basemap (and labels basemap?)
-        L.esri.basemapLayer('DarkGray').addTo(map);
+        // L.esri.basemapLayer('DarkGray').addTo(map);
         // L.esri.basemapLayer('ImageryLabels').addTo(map);
         // add a vector basemap
-        // L.esri.Vector.basemap('DarkGray').addTo(map);
+        L.esri.Vector.basemap('Nova').addTo(map);
         // create an icon for the points
         // a cross?
         var icon = L.icon({
