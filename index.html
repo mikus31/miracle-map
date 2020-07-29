@@ -308,7 +308,7 @@
             // map.setZoom(map.getZoom() + 1);
             // call the listeners for the drop-down menus
             listeners(data);
-            addSlider();
+            addSlider(data);
         }
 
         function zoom(data) {
@@ -334,7 +334,7 @@
             // });
         }
 
-        function addSlider() {
+        function addSlider(data) {
             var slider = document.getElementById('slider');
             noUiSlider.create(slider, {
                 connect: true
