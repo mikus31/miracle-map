@@ -24,6 +24,8 @@
     <script src="./nouislider/distribute/nouislider.js"></script>
     <!--    Load wNumb-->
     <script src="./wnumb/wNumb.js"></script>
+    <!-- Load Ajax-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <style>
         * {
             font-family: 'Open Sans', sans-serif;
@@ -352,7 +354,13 @@
                 }
             });
             mergeTooltips(slider, 15, ' - ');
-            // add on update function here
+            // add on change function here
+            slider.noUiSlider.on('change', function () {
+                // create a variable to access the slider values
+                var sliderYears = slider.noUiSlider.get();
+                console.log(sliderYears);
+                // pass a function here to update the map based on the slider values
+            });
         }
 
         function mergeTooltips(slider, threshold, separator) {
