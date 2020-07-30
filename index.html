@@ -367,6 +367,8 @@
         function updateMap(data, sliderYears) {
             // function goes here
             console.log(sliderYears);
+            // use setWhere?
+            data.setWhere("review_status = '1' AND miracle_year BETWEEN " + sliderYears[0] + " AND " + sliderYears[1]);
         }
 
         function mergeTooltips(slider, threshold, separator) {
