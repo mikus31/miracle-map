@@ -358,15 +358,13 @@
             slider.noUiSlider.on('change', function () {
                 // create a variable to access the slider values
                 var sliderYears = slider.noUiSlider.get();
-                // console.log(sliderYears);
+                console.log(sliderYears);
                 // pass a function here to update the map based on the slider values
                 updateMap(data, sliderYears);
             });
         }
 
         function updateMap(data, sliderYears) {
-            // function goes here
-            console.log(sliderYears);
             // use setWhere to query the data ala the condition drop-down menu
             data.setWhere("review_status = '1' AND miracle_year BETWEEN " + sliderYears[0] + " AND " + sliderYears[1]);
         }
