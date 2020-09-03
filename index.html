@@ -178,7 +178,7 @@
             border-radius: 5px;
             padding: 6px;
             position: absolute;
-            bottom: 95px;
+            bottom: 90px;
             left: 15px;
             visibility: visible;
             opacity: 100;
@@ -193,7 +193,7 @@
             padding: 6px;
             border-radius: 5px;
             position: absolute;
-            bottom: 95px;
+            bottom: 90px;
             left: 15px;
             visibility: hidden;
             opacity: 0;
@@ -218,6 +218,7 @@
     </div>
     <div id="map"> </div>
     <div id="lil-box">There are n miracles on the map</div>
+    <div id="big-box">More information about the miracle here!</div>
     <div id="query" class="leaflet-bar">
         <label> Condition:
             <select id="condition">
@@ -361,11 +362,16 @@
             condition.addEventListener('change', function () {
                 data.setWhere(condition.value);
             });
-            // add listener here for location drop-down menu
-            //            var location = document.getElementById('location');
-            // location.addEventListener('change', function() {
-            // data.setWhere(location.value);
-            // });
+            // add another listener here for when users click on a miracle
+            const littleBox = document.getElementById('lil-box');
+            const bigBox = document.getElementById('big-box');
+            data.addEventListener('click', () => {
+                // console.log("hi michael");
+                littleBox.style.visibility = 'invisible';
+                littleBox.style.opacity = 0;
+                bigBox.style.visibility = 'visible';
+                bigBox.style.opacity = 100;
+            })
         }
 
         function addSlider(data) {
