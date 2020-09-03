@@ -175,8 +175,6 @@
             width: 100px;
             height: 100px;
             background-color: white;
-            box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
-            color: #35605A;
             border-radius: 5px;
             padding: 6px;
             position: absolute;
@@ -185,6 +183,22 @@
             visibility: visible;
             opacity: 100;
             transition: visibility 0s, opacity .5s linear;
+        }
+        
+        #big-box {
+            z-index: 1001;
+            width: 200px;
+            height: 200px;
+            background-color: white;
+            padding: 6px;
+            border-radius: 5px;
+            position: absolute;
+            bottom: 95px;
+            left: 15px;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s, opacity .5s linear;
+            transition-delay: .5s;
         }
     </style>
 </head>
