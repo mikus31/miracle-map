@@ -145,7 +145,7 @@
  */
 
 .noUi-target {
-    background: #1e1b1c;
+    background: #fff;
     border-radius: 4px;
     border: 1px solid #D3D3D3;
     box-shadow: inset 0 1px 1px #F0F0F0, 0 3px 6px -5px #BBB;
@@ -172,11 +172,11 @@
 }
 
 .noUi-handle {
-    border: 1px solid #1e1b1c;
+    border: 1px solid #fff;
     border-radius: 3px;
-    background: #1e1b1c;
+    background: #fff;
     cursor: default;
-    box-shadow: inset 0 0 1px #1e1b1c, inset 0 1px 7px #EBEBEB, 0 3px 6px -3px #BBB;
+    box-shadow: inset 0 0 1px #fff, inset 0 1px 7px #EBEBEB, 0 3px 6px -3px #BBB;
 }
 
 .noUi-active {
@@ -356,9 +356,9 @@
 .noUi-tooltip {
     display: block;
     position: absolute;
-    border: 1px solid #1e1b1c;
+    border: 1px solid #fff;
     border-radius: 3px;
-    background: #1e1b1c;
+    background: #fff;
     color: #01bac2;
     padding: 5px;
     text-align: center;
