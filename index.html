@@ -38,7 +38,7 @@
         
         #map {
             position: absolute;
-            top: 60px;
+            top: 76px;
             bottom: 0;
             width: 100%;
             z-index: 1001;
@@ -57,19 +57,19 @@
         .navbar {
             display: flex;
             justify-content: space-between;
-            height: 60px;
+            height: 76px;
             align-content: center;
         }
         
         .fullTitle {
-            padding-top: 1px;
+            padding-top: 0px;
             padding-left: 16px;
             margin: auto;
         }
         
         #miracle-icon {
-            height: 60px;
-            width: 320px;
+            height: 80px;
+            width: 360px;
         }
         
         .fullTitleText {
@@ -101,59 +101,60 @@
         }
         
         .links {
-            padding-top: 13px;
-            padding-left: 16px;
+            padding-top: 20px;
+            padding-left: 5px;
             padding-right: 4px;
         }
         
         #query {
             position: fixed;
-            top: 13px;
-            right: 85px;
+            top: 20px;
+            left: 80px;
             z-index: 1001;
             font-size: .85em;
             font-weight: bold;
-            color: #01bac2;
+            color: whitesmoke;
             padding: .5em;
         }
         
         #query select {
             font-size: 1em;
             font-family: 'Open Sans', sans-serif;
-            color: #35605A;
+            color: #1e1b1c;
         }
         
         h3 {
             font-size: 1.25em;
             font-weight: bold;
-            color: #01bac2;
+            color: #1e1b1c;
         }
         
         h4 {
             font-size: 1em;
-            color: #01bac2;
+            color: #1e1b1c;
         }
         
         p {
             font-size: 1em;
-            color: #343434;
+            color: #1e1b1c;
         }
         
         a {
             font-size: 1em;
-            color: #35605A;
+            color: #01bac2;
             word-wrap: break-word;
         }
         
         a:visited {
             font-size: 1em;
-            color: #11fd9d;
+            color: #35605A;
             word-wrap: break-word;
         }
         
         a:hover {
             font-size: 1em;
-            color: #11fd9d;
+            color: #01bac2;
+            opacity: .8;
         }
         
         #slider {
@@ -174,6 +175,10 @@
         
         .material-icons.fireflygreen {
             color: #01bac2;
+        }
+        
+        .material-icons.whitesmoke {
+            color: whitesmoke;
         }
         
         .material-icons:hover {
@@ -221,12 +226,12 @@
     <!--    title bar style inspired by Lis Fano's glacier map: https://efano.github.io/GNP-glaciers/index.html#-->
     <div class="navbarParent">
         <div class="navbar">
+            <div class="links"> <i class="material-icons md-36 whitesmoke" title="Reset Map" onmouseover="" style="cursor: pointer" onclick="window.location.reload();">refresh</i>
+                <a href='https://arcg.is/1fnqKS' target="_blank"> <i class="material-icons md-36 whitesmoke" title="Submit a Miracle">add_box</i> </a>
+            </div>
             <div class="fullTitle">
                 <div class="logo"> <img id="miracle-icon" src="images/mm-logo/PNG/PNG/test.png"> </div>
                 <!--<div class="fullTitleText"> <span class="navbar-title">The Miracle Map</span> <span class="vl">|</span> <span class="navbar-subtitle">A user-generated, interactive web map of miracles from around the world</span> </div>--></div>
-            <div class="links"> <i class="material-icons md-36 fireflygreen" title="Reset Map" onmouseover="" style="cursor: pointer" onclick="window.location.reload();">refresh</i>
-                <a href='https://arcg.is/1fnqKS' target="_blank"> <i class="material-icons md-36 fireflygreen" title="Submit a Miracle">add_box</i> </a>
-            </div>
         </div>
     </div>
     <div id="map"> </div>
