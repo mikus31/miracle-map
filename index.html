@@ -349,7 +349,7 @@
                     });
                 }
                 , onEachFeature: function (feature, layer) {
-                    var popupClick = '<h3>{Name}</h3><p>Test<br>More info here<br><br>Link to video testimony:<br><a href = {links} target=blank>{links}</a></p>';
+                    // var popupClick = '<h3>{Name}</h3><p>Test<br>More info here<br><br>Link to video testimony:<br><a href = {links} target=blank>{links}</a></p>';
                     var popupHover = '<h3>{Name}</h3>';
                     var popup = L.Util.template(popupHover, layer.feature.properties);
                     layer.on('mouseover', function () {
@@ -360,6 +360,13 @@
                     })
                     layer.on('mouseout', function () {
                         layer.closePopup();
+                    })
+                    layer.on('click', function () {
+                        console.log(layer.feature.properties);
+                        var miracle_name = layer.feature.properties.Name;
+                        var miracle_link = layer.feature.properties.links;
+                        var popupClick = '<h3>' + miracle_name + '</h3><a href=' + miracle_link + ' target=blank>Video Testimony</a>';
+                        document.getElementById('big-box').innerHTML = popupClick;
                     })
                 }
             }).addTo(map);
@@ -507,7 +514,7 @@
                     return;
                 }
                 console.log('found ' + count + ' features')
-                document.getElementById('miracle-number').innerHTML = count;;
+                document.getElementById('miracle-number').innerHTML = count;
                 var miracleNumber = document.getElementById('miracle-number');
                 miracleNumber.style.color = '#01bac2';
                 miracleNumber.style.fontWeight = 'bolder';
