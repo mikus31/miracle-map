@@ -323,13 +323,9 @@
         // create map and set extent
         var map = L.map('map').setView([0, 0], 5);
         // add esri basemap
-        L.esri.basemapLayer('ImageryFirefly').addTo(map);
+        L.esri.basemapLayer('ImageryClarity').addTo(map);
         // add labels for basemap?
         // L.esri.basemapLayer('ImageryLabels').addTo(map);
-        // add a carto basemap
-        // L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/dark_nolabels/{z}/{x}/{y}.png').addTo(map);
-        // create an icon for the points
-        // a cross?
         var icon = L.icon({
             iconUrl: './images/firefly-white.png'
             , iconSize: [40, 40]
