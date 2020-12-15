@@ -142,7 +142,7 @@
         }
         
         p {
-            font-size: 1em;
+            font-size: .9em;
             color: #1e1b1c;
         }
         
@@ -209,8 +209,8 @@
         
         #big-box {
             z-index: 1001;
-            width: 215px;
-            height: 150px;
+            width: 300px;
+            height: 190px;
             background-color: whitesmoke;
             padding: 6px;
             border-radius: 5px;
@@ -366,7 +366,7 @@
                         var coord = e.latlng;
                         var lat = coord.lat;
                         var lng = coord.lng;
-                        var popupClick = '<h3>' + miracle_name + '</h3>' + lat + ', ' + lng + '<br>Miracle Type: ' + miracle_type + '<br>' + '<a href=' + miracle_link + ' target=blank>Video Testimony</a>';
+                        var popupClick = '<h3>' + miracle_name + '</h3>' + '<p>Coordinates: ' + lat + ', ' + lng + '<br>Miracle Type: ' + miracle_type + '<br>' + '<a href=' + miracle_link + ' target=blank>Video Testimony</a></p>';
                         document.getElementById('big-box').innerHTML = popupClick;
                     })
                 }
