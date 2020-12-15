@@ -361,7 +361,8 @@
                         console.log(layer.feature.properties);
                         var miracle_name = layer.feature.properties.Name;
                         var miracle_link = layer.feature.properties.links;
-                        var popupClick = '<h3>' + miracle_name + '</h3><a href=' + miracle_link + ' target=blank>Video Testimony</a>';
+                        var miracle_type = layer.feature.properties.Miracle_Type;
+                        var popupClick = '<h3>' + miracle_name + '</h3>' + 'Miracle Type: ' + miracle_type + '<br>' + '<a href=' + miracle_link + ' target=blank>Video Testimony</a>';
                         document.getElementById('big-box').innerHTML = popupClick;
                     })
                 }
