@@ -209,8 +209,8 @@
         
         #big-box {
             z-index: 1001;
-            width: 200px;
-            height: 200px;
+            width: 215px;
+            height: 150px;
             background-color: whitesmoke;
             padding: 6px;
             border-radius: 5px;
@@ -348,8 +348,9 @@
                     // var popupClick = '<h3>{Name}</h3><p>Test<br>More info here<br><br>Link to video testimony:<br><a href = {links} target=blank>{links}</a></p>';
                     var popupHover = '<h3>{Name}</h3>';
                     var popup = L.Util.template(popupHover, layer.feature.properties);
-                    layer.on('mouseover', function () {
+                    layer.on('mouseover', function (e) {
                         console.log(layer.feature.properties.miracle_year);
+                        // console.log(layer.feature.properties);
                         layer.bindPopup(function (layer) {
                             return popup;
                         }).openPopup();
@@ -357,12 +358,15 @@
                     layer.on('mouseout', function () {
                         layer.closePopup();
                     })
-                    layer.on('click', function () {
+                    layer.on('click', function (e) {
                         console.log(layer.feature.properties);
                         var miracle_name = layer.feature.properties.Name;
                         var miracle_link = layer.feature.properties.links;
                         var miracle_type = layer.feature.properties.Miracle_Type;
-                        var popupClick = '<h3>' + miracle_name + '</h3>' + 'Miracle Type: ' + miracle_type + '<br>' + '<a href=' + miracle_link + ' target=blank>Video Testimony</a>';
+                        var coord = e.latlng;
+                        var lat = coord.lat;
+                        var lng = coord.lng;
+                        var popupClick = '<h3>' + miracle_name + '</h3>' + lat + ', ' + lng + '<br>Miracle Type: ' + miracle_type + '<br>' + '<a href=' + miracle_link + ' target=blank>Video Testimony</a>';
                         document.getElementById('big-box').innerHTML = popupClick;
                     })
                 }
