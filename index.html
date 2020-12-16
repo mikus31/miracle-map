@@ -107,6 +107,10 @@
             padding-right: 4px;
         }
         
+        #about {
+            padding-top: 20px;
+        }
+        
         #query {
             position: fixed;
             top: 20px;
@@ -235,8 +239,8 @@
         <div class="navbar">
             <div class="links"> <i class="material-icons md-36 whitesmoke" title="Reset Map" onmouseover="" style="cursor: pointer" onclick="window.location.reload();">refresh</i>
                 <a href='https://arcg.is/1fnqKS' target="_blank"> <i class="material-icons md-36 whitesmoke" title="Submit a Miracle">add_box</i></a>
-                <div id="about"><i class="material-icons md-36 whitesmoke" title="About" style="cursor: pointer">info</i></div>
             </div>
+            <div id="about"><i class="material-icons md-36 whitesmoke" title="About" style="cursor: pointer">info</i></div>
             <div class="fullTitle">
                 <div class="logo"> <img id="miracle-icon" src="images/mm-logo/PNG/PNG/test.png"> </div>
                 <!--<div class="fullTitleText"> <span class="navbar-title">The Miracle Map</span> <span class="vl">|</span> <span class="navbar-subtitle">A user-generated, interactive web map of miracles from around the world</span> </div>--></div>
@@ -417,7 +421,7 @@
                 littleBox.style.opacity = 0;
                 bigBox.style.visibility = 'visible';
                 bigBox.style.opacity = 100;
-                var aboutText = '<h3>About the Miracle Mapper</h3>' + '<p>The Miracle Mapper is ...</p>';
+                var aboutText = '<h3>About the Miracle Mapper</h3>' + '<p>The Miracle Mapper is a user-generated, interactive web map of miracles from around the world.</p>';
                 document.getElementById('big-box').innerHTML = aboutText;
             })
         }
