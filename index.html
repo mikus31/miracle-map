@@ -234,7 +234,9 @@
     <div class="navbarParent">
         <div class="navbar">
             <div class="links"> <i class="material-icons md-36 whitesmoke" title="Reset Map" onmouseover="" style="cursor: pointer" onclick="window.location.reload();">refresh</i>
-                <a href='https://arcg.is/1fnqKS' target="_blank"> <i class="material-icons md-36 whitesmoke" title="Submit a Miracle">add_box</i></a> <i class="material-icons md-36 whitesmoke" title="About" style="cursor: pointer">info</i> </div>
+                <a href='https://arcg.is/1fnqKS' target="_blank"> <i class="material-icons md-36 whitesmoke" title="Submit a Miracle">add_box</i></a>
+                <div id="about"><i class="material-icons md-36 whitesmoke" title="About" style="cursor: pointer">info</i></div>
+            </div>
             <div class="fullTitle">
                 <div class="logo"> <img id="miracle-icon" src="images/mm-logo/PNG/PNG/test.png"> </div>
                 <!--<div class="fullTitleText"> <span class="navbar-title">The Miracle Map</span> <span class="vl">|</span> <span class="navbar-subtitle">A user-generated, interactive web map of miracles from around the world</span> </div>--></div>
@@ -401,11 +403,22 @@
             const littleBox = document.getElementById('lil-box');
             const bigBox = document.getElementById('big-box');
             data.addEventListener('click', () => {
-                // console.log("hi michael");
+                    // console.log("hi michael");
+                    littleBox.style.visibility = 'invisible';
+                    littleBox.style.opacity = 0;
+                    bigBox.style.visibility = 'visible';
+                    bigBox.style.opacity = 100;
+                })
+                // add another listener here for when users click on the info button
+            var about = document.getElementById('about');
+            about.addEventListener('click', () => {
+                console.log("hi michael");
                 littleBox.style.visibility = 'invisible';
                 littleBox.style.opacity = 0;
                 bigBox.style.visibility = 'visible';
                 bigBox.style.opacity = 100;
+                var aboutText = '<h3>About the Miracle Mapper</h3>' + '<p>The Miracle Mapper is ...</p>';
+                document.getElementById('big-box').innerHTML = aboutText;
             })
         }
 
