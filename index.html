@@ -218,8 +218,8 @@
         
         #big-box {
             z-index: 1001;
-            width: 300px;
-            height: 190px;
+            width: 335px;
+            height: 200px;
             background-color: whitesmoke;
             padding: 6px;
             border-radius: 5px;
@@ -338,7 +338,7 @@
 </div>-->
     <script>
         // create map and set extent
-        var map = L.map('map').setView([0, 0], 5);
+        var map = L.map('map').setView([0, 0], 2);
         // add esri basemap
         L.esri.basemapLayer('ImageryFirefly').addTo(map);
         // add labels for basemap?
@@ -377,12 +377,28 @@
                     layer.on('click', function (e) {
                         console.log(layer.feature.properties);
                         var miracle_name = layer.feature.properties.Name;
-                        var miracle_link = layer.feature.properties.links;
+                        var miracle_link = layer.feature.properties.links; // Assuming this is the YouTube video's link
                         var miracle_type = layer.feature.properties.Miracle_Type;
                         var coord = e.latlng;
                         var lat = coord.lat;
                         var lng = coord.lng;
-                        var popupClick = '<h3>' + miracle_name + '</h3>' + '<p>Coordinates: ' + lat + ', ' + lng + '<br>Miracle Type: ' + miracle_type + '<br>' + '<a href=' + miracle_link + ' target=blank>Video Testimony</a></p>';
+                        var popupClick = '<h3>' + miracle_name + '</h3>' + '<p>Coordinates: ' + lat + ', ' + lng + '<br>Miracle Type: ' + miracle_type;
+                        // Check if miracle_link exists and is not an empty string
+                        if (miracle_link && miracle_link.trim() !== "") {
+                            // Extract the VIDEO_ID from the YouTube link
+                            var videoIdMatch = miracle_link.match(/v=([A-Za-z0-9_\-]+)/);
+                            if (videoIdMatch && videoIdMatch[1]) {
+                                var videoId = videoIdMatch[1];
+                                // Construct the HTML with an iframe for the YouTube video
+                                var iframeHtml = '<iframe width="160" height="90" src="https://www.youtube.com/embed/' + videoId + '" frameborder="0" allowfullscreen></iframe>';
+                                popupClick += '<br>' + iframeHtml;
+                            }
+                            else {
+                                // Handle cases where the video ID couldn't be extracted
+                                console.error("Unable to extract video ID from the YouTube link.");
+                            }
+                        }
+                        popupClick += '</p>';
                         document.getElementById('big-box').innerHTML = popupClick;
                     })
                 }
@@ -404,6 +420,9 @@
                     return;
                 }
                 map.fitBounds(latlngbounds);
+                // After fitting the bounds, change the zoom level and center coordinates
+                map.setZoom(2); // Change the zoom level to your desired value
+                map.panTo(latlngbounds.getCenter()); // Change the center coordinates as needed
             });
         }
 
